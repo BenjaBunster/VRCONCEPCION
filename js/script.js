@@ -24,13 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxClose = document.querySelector('[data-lightbox-close]');
   const lightboxPrev = document.querySelector('[data-lightbox-prev]');
   const lightboxNext = document.querySelector('[data-lightbox-next]');
+  const serviceModal = document.querySelector('[data-service-modal]');
+  const serviceModalContent = document.querySelector('[data-service-modal-content]');
+  const serviceOpeners = document.querySelectorAll('[data-service-open]');
+  const serviceCloseButtons = serviceModal ? serviceModal.querySelectorAll('[data-service-close]') : [];
   const videoCards = document.querySelectorAll('[data-video-card]');
 
   let currentGalleryIndex = 0;
   let currentLightboxIndex = 0;
   let previousActiveElement = null;
+  let previousServiceActiveElement = null;
+  let galleryAutoplayId = null;
 
   const getGalleryPageSize = () => (window.innerWidth <= 768 ? 1 : 5);
+
+  const getGalleryMaxStartIndex = () => Math.max(0, galleryItems.length - getGalleryPageSize());
 
   const setHeaderTheme = () => {
     if (!header || !heroSection) return;
@@ -90,6 +98,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealItems.forEach((item) => revealObserver.observe(item));
 
+  const openServiceModal = (serviceId) => {
+    if (!serviceModal || !serviceModalContent) return;
+
+    const template = document.querySelector(`[data-service-template="${serviceId}"]`);
+    if (!template) return;
+
+    previousServiceActiveElement = document.activeElement;
+    serviceModalContent.innerHTML = template.innerHTML;
+    serviceModal.hidden = false;
+    serviceModal.setAttribute('aria-hidden', 'false');
+    body.classList.add('menu-open');
+    serviceModal.querySelector('.service-modal__close')?.focus();
+  };
+
+  const closeServiceModal = () => {
+    if (!serviceModal || !serviceModalContent) return;
+
+    serviceModal.hidden = true;
+    serviceModal.setAttribute('aria-hidden', 'true');
+    serviceModalContent.innerHTML = '';
+    body.classList.remove('menu-open');
+
+    if (previousServiceActiveElement && typeof previousServiceActiveElement.focus === 'function') {
+      previousServiceActiveElement.focus();
+    }
+  };
+
+  serviceOpeners.forEach((button) => {
+    button.addEventListener('click', () => {
+      openServiceModal(button.dataset.serviceOpen || '');
+    });
+  });
+
+  serviceCloseButtons.forEach((button) => {
+    button.addEventListener('click', closeServiceModal);
+  });
+
+  if (serviceModal) {
+    serviceModal.addEventListener('click', (event) => {
+      if (event.target === serviceModal || event.target instanceof Element && event.target.hasAttribute('data-service-close')) {
+        closeServiceModal();
+      }
+    });
+  }
+
   const updateGalleryCounter = () => {
     if (galleryCounter) {
       galleryCounter.textContent = `${Math.min(currentGalleryIndex + 1, galleryItems.length)} / ${galleryItems.length}`;
@@ -114,13 +167,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!galleryItems.length) return 0;
 
     const targetItem = galleryItems[Math.max(0, Math.min(index, galleryItems.length - 1))];
-    return -(targetItem.offsetLeft);
+    const trackPadding = galleryTrack ? parseFloat(getComputedStyle(galleryTrack).paddingLeft) || 0 : 0;
+    return Math.max(0, targetItem.offsetLeft - trackPadding);
+  };
+
+  const getGalleryStartIndex = (index) => {
+    const maxStartIndex = getGalleryMaxStartIndex();
+
+    if (index < 0) {
+      return maxStartIndex;
+    }
+
+    if (index > maxStartIndex) {
+      return 0;
+    }
+
+    return index;
   };
 
   const setActiveGalleryItem = (index, immediate = false) => {
     const pageSize = getGalleryPageSize();
     const maxStartIndex = Math.max(0, galleryItems.length - pageSize);
-    currentGalleryIndex = Math.max(0, Math.min(index, maxStartIndex));
+    currentGalleryIndex = getGalleryStartIndex(index);
     updateGalleryCounter();
 
     if (galleryDots) {
@@ -132,18 +200,33 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (galleryTrack) {
-      galleryTrack.style.transition = immediate ? 'none' : 'transform 320ms ease';
-      galleryTrack.style.transform = `translateX(${getGalleryTranslateX(currentGalleryIndex)}px)`;
+    if (galleryShell) {
+      galleryShell.scrollTo({
+        left: getGalleryTranslateX(currentGalleryIndex),
+        behavior: immediate ? 'auto' : 'smooth',
+      });
     }
   };
 
   const scrollGalleryTo = (index, immediate = false) => {
     if (!galleryTrack || !galleryItems.length) return;
-    const pageSize = getGalleryPageSize();
-    const maxStartIndex = Math.max(0, galleryItems.length - pageSize);
-    const targetIndex = Math.max(0, Math.min(index, maxStartIndex));
+    const targetIndex = getGalleryStartIndex(index);
     setActiveGalleryItem(targetIndex, immediate);
+  };
+
+  const advanceGallery = () => {
+    scrollGalleryTo(currentGalleryIndex + getGalleryPageSize());
+  };
+
+  const startGalleryAutoplay = () => {
+    if (galleryAutoplayId || !galleryTrack || !galleryItems.length) return;
+    galleryAutoplayId = window.setInterval(advanceGallery, 3500);
+  };
+
+  const stopGalleryAutoplay = () => {
+    if (!galleryAutoplayId) return;
+    window.clearInterval(galleryAutoplayId);
+    galleryAutoplayId = null;
   };
 
   if (galleryTrack && galleryItems.length) {
@@ -151,8 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollGalleryTo(0, true);
 
     const forceResetGallery = () => {
-      galleryTrack.style.transition = 'none';
-      galleryTrack.style.transform = 'translateX(0px)';
+      currentGalleryIndex = 0;
+      updateGalleryCounter();
       setActiveGalleryItem(0, true);
     };
 
@@ -177,6 +260,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('load', forceResetGallery, { once: true });
+
+    const advanceGallery = () => {
+      const pageSize = getGalleryPageSize();
+      const maxStartIndex = getGalleryMaxStartIndex();
+      const nextIndex = currentGalleryIndex + pageSize;
+      scrollGalleryTo(nextIndex > maxStartIndex ? 0 : nextIndex);
+    };
+
+    const startGalleryAutoplay = () => {
+      if (galleryAutoplayId || !galleryTrack || !galleryItems.length) return;
+      galleryAutoplayId = window.setInterval(advanceGallery, 3500);
+    };
+
+    const stopGalleryAutoplay = () => {
+      if (!galleryAutoplayId) return;
+      window.clearInterval(galleryAutoplayId);
+      galleryAutoplayId = null;
+    };
+
+    galleryShell?.addEventListener('mouseenter', stopGalleryAutoplay);
+    galleryShell?.addEventListener('mouseleave', startGalleryAutoplay);
+    galleryShell?.addEventListener('focusin', stopGalleryAutoplay);
+    galleryShell?.addEventListener('focusout', startGalleryAutoplay);
+
+    startGalleryAutoplay();
   }
 
   const openLightbox = (index) => {
@@ -263,6 +371,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      if (serviceModal && !serviceModal.hidden) {
+        closeServiceModal();
+        return;
+      }
       if (lightbox && !lightbox.hidden) {
         closeLightbox();
       }

@@ -6,6 +6,9 @@
   <meta name="description" content="Llevamos experiencias de realidad virtual a cumpleaños, eventos gamer, colegios, empresas, municipios y eventos corporativos en Concepción.">
   <meta name="theme-color" content="#111111">
   <title>VR Concepción | Realidad Virtual para Eventos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,7 +30,6 @@
       </nav>
 
       <div class="header-actions">
-        <a class="button button--primary button--compact" href="#contacto">Contáctanos</a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
           <span class="menu-toggle__bar"></span>
           <span class="menu-toggle__bar"></span>
@@ -53,34 +55,16 @@
     <section class="hero section section--dark" id="inicio">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <p class="eyebrow">VR Concepción</p>
-          <h1>El entretenimiento del futuro, hoy en tus eventos</h1>
-          <p>¿Buscas algo diferente para tu próxima celebración familiar o evento corporativo? Llevamos la magia de la realidad virtual a cumpleaños, reuniones y todo tipo de encuentros con experiencias interactivas y a la medida de lo que necesitas. Momentos únicos diseñados para conectar, divertir y asombrar a todos.</p>
-          <p>Somos VR Concepción, una empresa apasionada por la innovación tecnológica que, a través de lentes de realidad virtual, ofrece vivencias seguras, fascinantes e inolvidables para todas las edades.</p>
-          <div class="hero-actions">
-            <a class="button button--primary" href="#servicios">Conoce nuestros servicios</a>
-            <a class="button button--ghost" href="#contacto">Contáctanos</a>
+          <div class="hero-copy__lead">
+            <h1>El entretenimiento del futuro,<br>hoy en tus eventos</h1>
+            <p>¿Buscas algo diferente para tu próxima celebración familiar o evento corporativo? Llevamos la magia de la realidad virtual a cumpleaños, reuniones y todo tipo de encuentros con experiencias interactivas y a la medida de lo que necesitas. Momentos únicos diseñados para conectar, divertir y asombrar a todos.</p>
           </div>
-        </div>
 
-        <div class="hero-visual reveal">
-          <div class="hero-orb hero-orb--blue"></div>
-          <div class="hero-orb hero-orb--orange"></div>
-          <article class="hero-card">
-            <img src="img/imagen1.jpg" alt="Experiencia de realidad virtual en un evento de VR Concepción" class="hero-card__image" loading="eager">
-            <div class="hero-card__overlay">
-              <span>Realidad virtual</span>
-              <span>Eventos inmersivos</span>
-            </div>
-          </article>
-          <div class="hero-metrics">
-            <div>
-              <strong>Eventos</strong>
-              <span>cumpleaños, colegios y empresas</span>
-            </div>
-            <div>
-              <strong>Experiencias</strong>
-              <span>inmersivas y seguras</span>
+          <div class="hero-copy__foot">
+            <p>Somos VR Concepción, una empresa apasionada por la innovación tecnológica que, a través de lentes de realidad virtual, ofrece vivencias seguras, fascinantes e inolvidables para todas las edades.</p>
+            <div class="hero-actions">
+              <a class="button button--primary" href="#servicios">Conoce nuestros servicios</a>
+              <a class="button button--ghost" href="#contacto">Contáctanos</a>
             </div>
           </div>
         </div>
@@ -97,60 +81,107 @@
 
         <div class="service-grid">
           <article class="service-card reveal">
-            <div class="service-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 8h12a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3Z"></path>
-                <path d="M8 8V6a4 4 0 0 1 8 0v2"></path>
-                <path d="M9 13h.01"></path>
-                <path d="M15 13h.01"></path>
-              </svg>
-            </div>
-            <h3>CUMPLEAÑOS</h3>
-            <p>¡Vive una experiencia inolvidable en tu cumpleaños!</p>
-            <p>Llevamos la realidad virtual directamente a tu celebración, con videojuegos, desafíos y experiencias inmersivas, para que niños, jóvenes y adultos jueguen, se sorprendan y vivan algo realmente diferente.</p>
-            <p>¡Nosotros llevamos la tecnología. Tú disfruta la celebración!</p>
-            <p>Nuestros planes incluyen Lentes de Realidad Virtual y/o Consolas Gamer.</p>
+            <button class="service-card__trigger" type="button" data-service-open="cumpleanos" aria-haspopup="dialog">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg class="service-card__icon-svg" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 30h44c2.8 0 5-2.2 5-5v-3H5v3c0 2.8 2.2 5 5 5Z" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M8 22h48" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M32 7v5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M24 12l2 2m12-2-2 2m-10 0 1.5 2m15-2-1.5 2" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M17 22v-7c0-3 2.2-5.5 5.1-5.9 2.4-.4 4.7.6 6 2.4 1.3-1.8 3.6-2.8 6-2.4 2.9.4 5.1 2.9 5.1 5.9v7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="19" cy="17" r="1.8" fill="currentColor"/>
+                  <circle cx="25" cy="17" r="1.8" fill="currentColor"/>
+                  <circle cx="32" cy="17" r="1.8" fill="currentColor"/>
+                  <circle cx="39" cy="17" r="1.8" fill="currentColor"/>
+                  <circle cx="45" cy="17" r="1.8" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="service-card__title">CUMPLEAÑOS</span>
+              <span class="service-card__hint">Ver detalles</span>
+            </button>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 15c1.5-3 4-5 8-5s6.5 2 8 5"></path>
-                <path d="M7 10V6"></path>
-                <path d="M17 10V6"></path>
-                <path d="M12 12v3"></path>
-                <path d="M9 18h6"></path>
-              </svg>
-            </div>
-            <h3>EVENTO GAMER</h3>
-            <p>Actividad que pone a disposición de niñas, niños y adolescentes, entretención tecnológica con videojuegos en primera persona mediante el uso de Lentes de Realidad Virtual y el uso de Consolas de Video juegos.</p>
-            <p>Este es un evento diseñado para el sector público y privado que te permite llevar diversión a fiestas para hijos de funcionarios, para eventos de colegios, en eventos municipales, entre otros.</p>
-            <p>Nuestros planes están pensados para atender a cientos de participantes.</p>
+            <button class="service-card__trigger" type="button" data-service-open="evento-gamer" aria-haspopup="dialog">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg class="service-card__icon-svg" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 28h40c5.5 0 10-4.5 10-10 0-4.5-3.2-8.3-7.5-9.3-1.4-.3-2.8-.2-4.1.3l-8.4 3.4c-3.5 1.4-7.4 1.4-10.9 0l-8.4-3.4c-1.3-.5-2.7-.6-4.1-.3C14.2 9.7 11 13.5 11 18c0 5.5 4.5 10 10 10Z" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M20 17h8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M24 13v8" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                  <circle cx="41.5" cy="16.5" r="2.6" fill="currentColor"/>
+                  <circle cx="48.5" cy="13.5" r="2.2" fill="currentColor"/>
+                  <circle cx="50.8" cy="20" r="2.2" fill="currentColor"/>
+                  <circle cx="44.8" cy="20.8" r="2.2" fill="currentColor"/>
+                  <circle cx="39" cy="24" r="1.6" fill="currentColor"/>
+                  <circle cx="33.5" cy="24" r="1.6" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="service-card__title">EVENTO GAMER</span>
+              <span class="service-card__hint">Ver detalles</span>
+            </button>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 7h16v10H4z"></path>
-                <path d="M8 21h8"></path>
-                <path d="M9 11h6"></path>
-                <path d="M7 15h10"></path>
-              </svg>
-            </div>
-            <h3>EVENTOS INSTITUCIONALES Y CORPORATIVOS</h3>
-            <p>Transformamos cada actividad en una experiencia que conecta, sorprende y deja huellas. Llevamos la realidad virtual a colegios, empresas, municipios y eventos, con experiencias inmersivas que educan, entretienen, conectan y sorprenden.</p>
-            <p>Una propuesta tecnológica capaz de transformar una actividad, atraer miradas y capturar la atención de las personas.</p>
-            <p>Nuestros planes se diseñan en concordancia con tu evento para transformarlo en un evento con realidad virtual.</p>
+            <button class="service-card__trigger" type="button" data-service-open="corporativos" aria-haspopup="dialog">
+              <span class="service-card__icon" aria-hidden="true">
+                <svg class="service-card__icon-svg" viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 34h44" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M15 34V15l17-9 17 9v19" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M22 34V22h8v12" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M34 34V20h8v14" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>
+                  <path d="M26 13h4m4 0h4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                  <path d="M30 7v4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="service-card__title">EVENTOS INSTITUCIONALES Y CORPORATIVOS</span>
+              <span class="service-card__hint">Ver detalles</span>
+            </button>
           </article>
         </div>
       </div>
     </section>
 
+    <div class="service-modal" data-service-modal hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Detalle de servicios">
+      <div class="service-modal__backdrop" data-service-close></div>
+      <div class="service-modal__panel" role="document">
+        <button class="service-modal__close" type="button" data-service-close aria-label="Cerrar detalle">×</button>
+        <div class="service-modal__content" data-service-modal-content></div>
+      </div>
+    </div>
+
+    <template data-service-template="cumpleanos">
+      <article class="service-modal__article">
+        <h3>CUMPLEAÑOS</h3>
+        <p>¡Vive una experiencia inolvidable en tu cumpleaños!</p>
+        <p>Llevamos la realidad virtual directamente a tu celebración, con videojuegos, desafíos y experiencias inmersivas, para que niños, jóvenes y adultos jueguen, se sorprendan y vivan algo realmente diferente.</p>
+        <p>¡Nosotros llevamos la tecnología. Tú disfruta la celebración!</p>
+        <p>Nuestros planes incluyen Lentes de Realidad Virtual y/o Consolas Gamer.</p>
+      </article>
+    </template>
+
+    <template data-service-template="evento-gamer">
+      <article class="service-modal__article">
+        <h3>EVENTO GAMER</h3>
+        <p>Actividad que pone a disposición de niñas, niños y adolescentes, entretención tecnológica con videojuegos en primera persona mediante el uso de Lentes de Realidad Virtual y el uso de Consolas de Video juegos.</p>
+        <p>Este es un evento diseñado para el sector público y privado que te permite llevar diversión a fiestas para hijos de funcionarios, para eventos de colegios, en eventos municipales, entre otros.</p>
+        <p>Nuestros planes están pensados para atender a cientos de participantes.</p>
+      </article>
+    </template>
+
+    <template data-service-template="corporativos">
+      <article class="service-modal__article">
+        <h3>EVENTOS INSTITUCIONALES Y CORPORATIVOS</h3>
+        <p>Transformamos cada actividad en una experiencia que conecta, sorprende y deja huellas. Llevamos la realidad virtual a colegios, empresas, municipios y eventos, con experiencias inmersivas que educan, entretienen, conectan y sorprenden.</p>
+        <p>Una propuesta tecnológica capaz de transformar una actividad, atraer miradas y capturar la atención de las personas.</p>
+        <p>Nuestros planes se diseñan en concordancia con tu evento para transformarlo en un evento con realidad virtual.</p>
+      </article>
+    </template>
+
     <section class="section section--dark" id="experiencias-vr">
       <div class="container">
         <header class="section-heading reveal">
           <h2>Nuestras experiencias VR</h2>
-          <p>Un recorrido en video por el top 6 de nuestras mejores experiencias. Así es como llevamos la Realidad Virtual hasta tu evento para crear momentos de diversión, sorpresa y conexión que quedan en la memoria.</p>
+          <p>Un recorrido en video por el top 5 de nuestras mejores experiencias. Así es como llevamos la Realidad Virtual hasta tu evento para crear momentos de diversión, sorpresa y conexión que quedan en la memoria.</p>
         </header>
 
         <div class="video-grid">
@@ -190,14 +221,6 @@
             <div class="media-card__placeholder">
               <span class="media-badge">video5</span>
               <strong>/img/video5.mp4</strong>
-              <span>Archivo preparado para cargar el video cuando esté disponible.</span>
-            </div>
-          </article>
-
-          <article class="media-card reveal" data-video-card data-video-src="img/video6.mp4" data-video-label="video6">
-            <div class="media-card__placeholder">
-              <span class="media-badge">video6</span>
-              <strong>/img/video6.mp4</strong>
               <span>Archivo preparado para cargar el video cuando esté disponible.</span>
             </div>
           </article>
