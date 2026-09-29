@@ -185,48 +185,110 @@
         </header>
 
         <div class="video-grid">
-          <article class="media-card reveal" data-video-card data-video-src="img/video1.mp4" data-video-label="video1">
-            <div class="media-card__placeholder">
-              <span class="media-badge">video1</span>
-              <strong>/img/video1.mp4</strong>
-              <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+          <article class="media-entry reveal">
+            <div class="media-card" data-video-card data-video-src="img/video1.mp4" data-video-label="Beat Saber">
+              <div class="media-card__placeholder">
+                <span class="media-badge">video1</span>
+                <strong>/img/video1.mp4</strong>
+                <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+              </div>
             </div>
+            <button class="media-entry__button" type="button" data-video-open="video1" aria-haspopup="dialog">Beat Saber</button>
           </article>
 
-          <article class="media-card reveal" data-video-card data-video-src="img/video2.mp4" data-video-label="video2">
-            <div class="media-card__placeholder">
-              <span class="media-badge">video2</span>
-              <strong>/img/video2.mp4</strong>
-              <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+          <article class="media-entry reveal">
+            <div class="media-card" data-video-card data-video-src="img/video2.mp4" data-video-label="Crisis Brigade">
+              <div class="media-card__placeholder">
+                <span class="media-badge">video2</span>
+                <strong>/img/video2.mp4</strong>
+                <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+              </div>
             </div>
+            <button class="media-entry__button" type="button" data-video-open="video2" aria-haspopup="dialog">Crisis Brigade</button>
           </article>
 
-          <article class="media-card reveal" data-video-card data-video-src="img/video3.mp4" data-video-label="video3">
-            <div class="media-card__placeholder">
-              <span class="media-badge">video3</span>
-              <strong>/img/video3.mp4</strong>
-              <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+          <article class="media-entry reveal">
+            <div class="media-card" data-video-card data-video-src="img/video3.mp4" data-video-label="Epic Roller Coasters">
+              <div class="media-card__placeholder">
+                <span class="media-badge">video3</span>
+                <strong>/img/video3.mp4</strong>
+                <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+              </div>
             </div>
+            <button class="media-entry__button" type="button" data-video-open="video3" aria-haspopup="dialog">Epic Roller Coasters</button>
           </article>
 
-          <article class="media-card reveal" data-video-card data-video-src="img/video4.mp4" data-video-label="video4">
-            <div class="media-card__placeholder">
-              <span class="media-badge">video4</span>
-              <strong>/img/video4.mp4</strong>
-              <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+          <article class="media-entry reveal">
+            <div class="media-card" data-video-card data-video-src="img/video4.mp4" data-video-label="I Am Cat">
+              <div class="media-card__placeholder">
+                <span class="media-badge">video4</span>
+                <strong>/img/video4.mp4</strong>
+                <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+              </div>
             </div>
+            <button class="media-entry__button" type="button" data-video-open="video4" aria-haspopup="dialog">I Am Cat</button>
           </article>
 
-          <article class="media-card reveal" data-video-card data-video-src="img/video5.mp4" data-video-label="video5">
-            <div class="media-card__placeholder">
-              <span class="media-badge">video5</span>
-              <strong>/img/video5.mp4</strong>
-              <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+          <article class="media-entry reveal">
+            <div class="media-card" data-video-card data-video-src="img/video5.mp4" data-video-label="Vader Immortal de Star Wars">
+              <div class="media-card__placeholder">
+                <span class="media-badge">video5</span>
+                <strong>/img/video5.mp4</strong>
+                <span>Archivo preparado para cargar el video cuando esté disponible.</span>
+              </div>
             </div>
+            <button class="media-entry__button" type="button" data-video-open="video5" aria-haspopup="dialog">Vader Immortal de Star Wars</button>
           </article>
         </div>
       </div>
     </section>
+
+    <div class="video-modal" data-video-modal hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Detalle de experiencia VR">
+      <div class="video-modal__backdrop" data-video-close></div>
+      <div class="video-modal__panel" role="document">
+        <button class="video-modal__close" type="button" data-video-close aria-label="Cerrar detalle">×</button>
+        <div class="video-modal__content" data-video-modal-content></div>
+      </div>
+    </div>
+
+    <template data-video-template="video1">
+      <article class="video-modal__article">
+        <h3>Beat Saber</h3>
+        <p>Es un adictivo juego de ritmo en realidad virtual para todas las edades, donde debes usar sables de luz para cortar bloques musicales al compás de canciones épicas, combinando reflejos, coordinación y una inmersión total.</p>
+        <p>¡Entra y muévete! Esquiva, agáchate y muévete al ritmo de cada nota.</p>
+      </article>
+    </template>
+
+    <template data-video-template="video2">
+      <article class="video-modal__article">
+        <h3>Crisis Brigade</h3>
+        <p>Es un intenso juego de disparos en realidad virtual de estilo arcade clásico, donde debes poner a prueba tus reflejos esquivando balas y neutralizando a terroristas y zombis incluidos.</p>
+        <p>Las calles están invadidas y has sido seleccionado como uno de los pocos elegidos para realizar misiones de alto riesgo y salvar la ciudad. Estás autorizado a eliminar al enemigo por cualquier medio.</p>
+      </article>
+    </template>
+
+    <template data-video-template="video3">
+      <article class="video-modal__article">
+        <h3>Epic Roller Coasters</h3>
+        <p>Experimentarás la misma sensación que en las montañas rusas reales, en lugares y situaciones que probablemente nunca vivirás en la vida real.</p>
+        <p>Es un emocionante simulador de montañas rusas en realidad virtual para todas las edades, donde puedes experimentar la adrenalina de descensos extremos, giros imposibles y circuitos futuristas, ya sea disfrutando del viaje con total comodidad o disparando en su modo de acción.</p>
+      </article>
+    </template>
+
+    <template data-video-template="video4">
+      <article class="video-modal__article">
+        <h3>I Am Cat</h3>
+        <p>Es un divertido y encantador simulador en realidad virtual diseñado especialmente para los más pequeños, pero tan sorprendentemente adictivo que atrapa a jugadores de todas las edades mientras exploran el mundo desde la perspectiva de un travieso y curioso felino.</p>
+        <p>Embárcate en un entretenido viaje felino.</p>
+      </article>
+    </template>
+
+    <template data-video-template="video5">
+      <article class="video-modal__article">
+        <h3>Vader Immortal de Star Wars</h3>
+        <p>Brilla por su trepidante Dojo de Maestro Jedi, un adictivo espacio de entrenamiento virtual donde puedes perfeccionar el manejo de sables de luz avanzados, dominar los poderes de la Fuerza y superar desafíos cada vez más intensos contra hordas de enemigos.</p>
+      </article>
+    </template>
 
     <section class="section section--light" id="galeria">
       <div class="container">

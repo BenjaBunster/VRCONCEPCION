@@ -805,6 +805,11 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.media-entry {
+  display: grid;
+  gap: 0.8rem;
+}
+
 .media-card {
   min-height: 250px;
   overflow: hidden;
@@ -820,6 +825,100 @@ p {
   width: 100%;
   height: 100%;
   min-height: 250px;
+}
+
+.media-entry__button {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+}
+
+.media-entry__button:hover,
+.media-entry__button:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(0, 114, 206, 0.18);
+  border-color: rgba(0, 114, 206, 0.4);
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1185;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(5, 8, 12, 0.76);
+  backdrop-filter: blur(12px);
+}
+
+.video-modal[hidden] {
+  display: none;
+}
+
+.video-modal__backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.video-modal__panel {
+  position: relative;
+  width: min(100%, 860px);
+  max-height: min(88vh, 760px);
+  overflow: auto;
+  padding: clamp(1.3rem, 2vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at top right, rgba(0, 114, 206, 0.18), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(255, 87, 34, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(16, 21, 31, 0.98), rgba(9, 13, 20, 0.98));
+  box-shadow: var(--shadow-strong);
+}
+
+.video-modal__close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.video-modal__content {
+  padding-right: 3rem;
+}
+
+.video-modal__article h3 {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+  line-height: 1.02;
+}
+
+.video-modal__article p {
+  margin-bottom: 0.9rem;
+  color: rgba(245, 247, 251, 0.82);
+  font-size: 1rem;
+}
+
+.video-modal__article p:last-child {
+  margin-bottom: 0;
 }
 
 .media-card video {

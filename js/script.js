@@ -28,12 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const serviceModalContent = document.querySelector('[data-service-modal-content]');
   const serviceOpeners = document.querySelectorAll('[data-service-open]');
   const serviceCloseButtons = serviceModal ? serviceModal.querySelectorAll('[data-service-close]') : [];
+  const videoModal = document.querySelector('[data-video-modal]');
+  const videoModalContent = document.querySelector('[data-video-modal-content]');
+  const videoOpeners = document.querySelectorAll('[data-video-open]');
+  const videoCloseButtons = videoModal ? videoModal.querySelectorAll('[data-video-close]') : [];
   const videoCards = document.querySelectorAll('[data-video-card]');
 
   let currentGalleryIndex = 0;
   let currentLightboxIndex = 0;
   let previousActiveElement = null;
   let previousServiceActiveElement = null;
+  let previousVideoActiveElement = null;
   let galleryAutoplayId = null;
 
   const getGalleryPageSize = () => (window.innerWidth <= 768 ? 1 : 5);
@@ -139,6 +144,51 @@ document.addEventListener('DOMContentLoaded', () => {
     serviceModal.addEventListener('click', (event) => {
       if (event.target === serviceModal || event.target instanceof Element && event.target.hasAttribute('data-service-close')) {
         closeServiceModal();
+      }
+    });
+  }
+
+  const openVideoModal = (videoId) => {
+    if (!videoModal || !videoModalContent) return;
+
+    const template = document.querySelector(`[data-video-template="${videoId}"]`);
+    if (!template) return;
+
+    previousVideoActiveElement = document.activeElement;
+    videoModalContent.innerHTML = template.innerHTML;
+    videoModal.hidden = false;
+    videoModal.setAttribute('aria-hidden', 'false');
+    body.classList.add('menu-open');
+    videoModal.querySelector('.video-modal__close')?.focus();
+  };
+
+  const closeVideoModal = () => {
+    if (!videoModal || !videoModalContent) return;
+
+    videoModal.hidden = true;
+    videoModal.setAttribute('aria-hidden', 'true');
+    videoModalContent.innerHTML = '';
+    body.classList.remove('menu-open');
+
+    if (previousVideoActiveElement && typeof previousVideoActiveElement.focus === 'function') {
+      previousVideoActiveElement.focus();
+    }
+  };
+
+  videoOpeners.forEach((button) => {
+    button.addEventListener('click', () => {
+      openVideoModal(button.dataset.videoOpen || '');
+    });
+  });
+
+  videoCloseButtons.forEach((button) => {
+    button.addEventListener('click', closeVideoModal);
+  });
+
+  if (videoModal) {
+    videoModal.addEventListener('click', (event) => {
+      if (event.target === videoModal || event.target instanceof Element && event.target.hasAttribute('data-video-close')) {
+        closeVideoModal();
       }
     });
   }
@@ -371,6 +421,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      if (videoModal && !videoModal.hidden) {
+        closeVideoModal();
+        return;
+      }
       if (serviceModal && !serviceModal.hidden) {
         closeServiceModal();
         return;
