@@ -417,6 +417,10 @@ button {
   width: min(calc(100% - 3rem), 1380px);
 }
 
+#galeria .container {
+  width: min(calc(100% - 2rem), 1460px);
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -991,15 +995,15 @@ p {
   display: flex;
   flex-wrap: nowrap;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.1rem;
   width: max-content;
 }
 
 .gallery-card {
   margin: 0;
   overflow: hidden;
-  flex: 0 0 clamp(200px, 18vw, 220px);
-  max-width: clamp(200px, 18vw, 220px);
+  flex: 0 0 clamp(264px, 23.75vw, 290px);
+  max-width: clamp(264px, 23.75vw, 290px);
   background: #fff;
   border: 1px solid rgba(15, 22, 33, 0.08);
   transition: transform var(--transition), box-shadow var(--transition);

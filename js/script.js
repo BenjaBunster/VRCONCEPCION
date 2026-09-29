@@ -39,8 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let previousActiveElement = null;
   let previousServiceActiveElement = null;
   let previousVideoActiveElement = null;
-  let galleryAutoplayId = null;
-
   const getGalleryPageSize = () => (window.innerWidth <= 768 ? 1 : 5);
 
   const getGalleryMaxStartIndex = () => Math.max(0, galleryItems.length - getGalleryPageSize());
@@ -264,21 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveGalleryItem(targetIndex, immediate);
   };
 
-  const advanceGallery = () => {
-    scrollGalleryTo(currentGalleryIndex + getGalleryPageSize());
-  };
-
-  const startGalleryAutoplay = () => {
-    if (galleryAutoplayId || !galleryTrack || !galleryItems.length) return;
-    galleryAutoplayId = window.setInterval(advanceGallery, 3500);
-  };
-
-  const stopGalleryAutoplay = () => {
-    if (!galleryAutoplayId) return;
-    window.clearInterval(galleryAutoplayId);
-    galleryAutoplayId = null;
-  };
-
   if (galleryTrack && galleryItems.length) {
     updateGalleryDots();
     scrollGalleryTo(0, true);
@@ -310,31 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('load', forceResetGallery, { once: true });
-
-    const advanceGallery = () => {
-      const pageSize = getGalleryPageSize();
-      const maxStartIndex = getGalleryMaxStartIndex();
-      const nextIndex = currentGalleryIndex + pageSize;
-      scrollGalleryTo(nextIndex > maxStartIndex ? 0 : nextIndex);
-    };
-
-    const startGalleryAutoplay = () => {
-      if (galleryAutoplayId || !galleryTrack || !galleryItems.length) return;
-      galleryAutoplayId = window.setInterval(advanceGallery, 3500);
-    };
-
-    const stopGalleryAutoplay = () => {
-      if (!galleryAutoplayId) return;
-      window.clearInterval(galleryAutoplayId);
-      galleryAutoplayId = null;
-    };
-
-    galleryShell?.addEventListener('mouseenter', stopGalleryAutoplay);
-    galleryShell?.addEventListener('mouseleave', startGalleryAutoplay);
-    galleryShell?.addEventListener('focusin', stopGalleryAutoplay);
-    galleryShell?.addEventListener('focusout', startGalleryAutoplay);
-
-    startGalleryAutoplay();
   }
 
   const openLightbox = (index) => {
