@@ -414,6 +414,15 @@ button {
   width: min(calc(100% - 3rem), 1380px);
 }
 
+.service-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.service-intro {
+  margin-bottom: 0;
+}
+
 #galeria .container {
   width: min(calc(100% - 2rem), 1460px);
 }
@@ -604,9 +613,31 @@ p {
     max-width: 100%;
   }
 
-  .service-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.1rem;
+  .service-layout {
+    grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.1fr);
+    align-items: start;
+    gap: 1.35rem;
+  }
+
+  .service-intro {
+    position: sticky;
+    top: calc(var(--header-height) + 1.3rem);
+    padding: 1.9rem 1.8rem;
+    border: 1px solid rgba(15, 22, 33, 0.1);
+    border-radius: var(--radius-lg);
+    background:
+      radial-gradient(circle at top left, rgba(0, 114, 206, 0.1), transparent 30%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 251, 0.98));
+    box-shadow: var(--shadow);
+  }
+
+  .service-intro h2 {
+    max-width: 10ch;
+  }
+
+  .service-layout .service-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
 
   .service-card__trigger {
