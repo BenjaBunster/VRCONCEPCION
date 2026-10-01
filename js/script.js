@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoOpeners = document.querySelectorAll('[data-video-open]');
   const videoCloseButtons = videoModal ? videoModal.querySelectorAll('[data-video-close]') : [];
   const videoCards = document.querySelectorAll('[data-video-card]');
+  const heroMoreToggle = document.querySelector('[data-hero-more-toggle]');
+  const heroMoreText = document.querySelector('[data-hero-more-text]');
 
   let currentGalleryIndex = 0;
   let currentLightboxIndex = 0;
@@ -58,6 +60,40 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.setAttribute('aria-expanded', 'false');
     body.classList.remove('menu-open');
   };
+
+  const setHeroMoreExpanded = (expanded) => {
+    if (!heroMoreToggle || !heroMoreText) return;
+
+    heroMoreToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    heroMoreToggle.parentElement?.classList.toggle('is-expanded', expanded);
+    heroMoreText.hidden = !expanded;
+  };
+
+  if (heroMoreToggle && heroMoreText) {
+    const mobileHeroMedia = window.matchMedia('(max-width: 768px)');
+
+    const syncHeroMoreState = () => {
+      if (mobileHeroMedia.matches) {
+        setHeroMoreExpanded(false);
+        return;
+      }
+
+      heroMoreToggle.setAttribute('aria-expanded', 'false');
+      heroMoreToggle.parentElement?.classList.remove('is-expanded');
+      heroMoreText.hidden = false;
+    };
+
+    syncHeroMoreState();
+
+    heroMoreToggle.addEventListener('click', () => {
+      const isExpanded = heroMoreToggle.getAttribute('aria-expanded') === 'true';
+      setHeroMoreExpanded(!isExpanded);
+    });
+
+    mobileHeroMedia.addEventListener('change', (event) => {
+      syncHeroMoreState();
+    });
+  }
 
   const openMobileMenu = () => {
     if (!mobileMenu || !menuToggle) return;
