@@ -41,7 +41,8 @@ body {
   overflow-x: clip;
 }
 
-body.menu-open {
+body.menu-open,
+body.hero-text-open {
   overflow: hidden;
 }
 
@@ -831,6 +832,18 @@ p {
   box-shadow: var(--shadow-strong);
 }
 
+.hero-text-dialog {
+  width: min(calc(100% - 2rem), 570px);
+  max-height: 88svh;
+  margin: auto;
+  color: var(--text);
+}
+
+.hero-text-dialog::backdrop {
+  background: rgba(5, 8, 12, 0.7);
+  backdrop-filter: blur(12px);
+}
+
 .service-modal__close {
   position: absolute;
   top: 0.9rem;
@@ -1560,24 +1573,8 @@ p {
     transition: transform var(--transition), background var(--transition), border-color var(--transition);
   }
 
-  .hero-copy__more:not([open]) .hero-copy__extra {
+  .hero-copy__extra {
     display: none;
-  }
-
-  .hero-copy__more:not(.is-expanded) .hero-copy__extra {
-    display: none;
-  }
-
-  .hero-copy__more.is-expanded .hero-more-toggle__more {
-    display: none;
-  }
-
-  .hero-copy__more:not(.is-expanded) .hero-more-toggle__less {
-    display: none;
-  }
-
-  .hero-copy__more.is-expanded .hero-more-toggle {
-    margin-bottom: 0.75rem;
   }
 
   .hero-actions {

@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoCards = document.querySelectorAll('[data-video-card]');
   const heroMoreToggle = document.querySelector('[data-hero-more-toggle]');
   const heroMoreText = document.querySelector('[data-hero-more-text]');
+  const heroTextDialog = document.querySelector('[data-hero-text-dialog]');
+  const heroTextContent = document.querySelector('[data-hero-text-content]');
+  const heroTextClose = document.querySelector('[data-hero-text-close]');
 
   let currentGalleryIndex = 0;
   let currentLightboxIndex = 0;
@@ -61,38 +64,34 @@ document.addEventListener('DOMContentLoaded', () => {
     body.classList.remove('menu-open');
   };
 
-  const setHeroMoreExpanded = (expanded) => {
-    if (!heroMoreToggle || !heroMoreText) return;
-
-    heroMoreToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-    heroMoreToggle.parentElement?.classList.toggle('is-expanded', expanded);
-    heroMoreText.hidden = !expanded;
-  };
-
-  if (heroMoreToggle && heroMoreText) {
+  if (heroMoreToggle && heroMoreText && heroTextDialog instanceof HTMLDialogElement && heroTextContent && heroTextClose) {
     const mobileHeroMedia = window.matchMedia('(max-width: 768px)');
+    heroTextContent.textContent = heroMoreText.textContent;
 
     const syncHeroMoreState = () => {
-      if (mobileHeroMedia.matches) {
-        setHeroMoreExpanded(false);
-        return;
+      heroMoreText.hidden = mobileHeroMedia.matches;
+      if (!mobileHeroMedia.matches && heroTextDialog.open) {
+        heroTextDialog.close();
       }
-
-      heroMoreToggle.setAttribute('aria-expanded', 'false');
-      heroMoreToggle.parentElement?.classList.remove('is-expanded');
-      heroMoreText.hidden = false;
     };
 
     syncHeroMoreState();
 
     heroMoreToggle.addEventListener('click', () => {
-      const isExpanded = heroMoreToggle.getAttribute('aria-expanded') === 'true';
-      setHeroMoreExpanded(!isExpanded);
+      heroTextDialog.showModal();
+      body.classList.add('hero-text-open');
     });
 
-    mobileHeroMedia.addEventListener('change', (event) => {
-      syncHeroMoreState();
+    heroTextClose.addEventListener('click', () => heroTextDialog.close());
+    heroTextDialog.addEventListener('click', (event) => {
+      if (event.target !== heroTextDialog) return;
+      const bounds = heroTextDialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+        heroTextDialog.close();
+      }
     });
+    heroTextDialog.addEventListener('close', () => body.classList.remove('hero-text-open'));
+    mobileHeroMedia.addEventListener('change', syncHeroMoreState);
   }
 
   const openMobileMenu = () => {
@@ -415,6 +414,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      if (heroTextDialog instanceof HTMLDialogElement && heroTextDialog.open) {
+        event.preventDefault();
+        heroTextDialog.close();
+        return;
+      }
       if (videoModal && !videoModal.hidden) {
         closeVideoModal();
         return;

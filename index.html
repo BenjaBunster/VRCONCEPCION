@@ -88,10 +88,7 @@
           <div class="hero-copy__foot">
             <div class="hero-copy__more">
               <p class="hero-copy__extra" data-hero-more-text>Llevamos la magia de la realidad virtual a cumpleaños, reuniones y todo tipo de encuentros con experiencias interactivas y a la medida de lo que necesitas. Momentos únicos diseñados para conectar, divertir y asombrar a todos.</p>
-              <button class="hero-more-toggle" type="button" data-hero-more-toggle aria-expanded="false">
-                <span class="hero-more-toggle__more">Ver texto completo</span>
-                <span class="hero-more-toggle__less">Ocultar texto</span>
-              </button>
+              <button class="hero-more-toggle" type="button" data-hero-more-toggle aria-haspopup="dialog" aria-controls="hero-text-dialog">Ver texto completo</button>
             </div>
             <div class="hero-actions">
               <a class="button button--primary" href="#servicios">Conoce nuestros servicios</a>
@@ -101,6 +98,14 @@
         </div>
       </div>
     </section>
+
+    <dialog class="hero-text-dialog service-modal__panel" id="hero-text-dialog" aria-labelledby="hero-text-title" data-hero-text-dialog>
+      <button class="service-modal__close" type="button" data-hero-text-close aria-label="Cerrar texto" autofocus>×</button>
+      <div class="service-modal__content service-modal__article">
+        <h3 id="hero-text-title">Experiencias para tus eventos</h3>
+        <p data-hero-text-content></p>
+      </div>
+    </dialog>
 
     <section class="section section--light" id="servicios">
 
