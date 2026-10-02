@@ -641,8 +641,9 @@ p {
   }
 
   .hero-copy h1 {
-    width: min(52vw, 760px);
-    max-width: 760px;
+    width: max-content;
+    max-width: none;
+    white-space: nowrap;
     font-size: clamp(3rem, 3.1vw, 4rem);
     line-height: 0.94;
   }
@@ -1546,6 +1547,11 @@ p {
 
   .hero-copy p {
     font-size: 0.98rem;
+  }
+
+  .hero-copy .hero-copy__subtitle {
+    margin-inline: auto;
+    font-size: 1.08rem;
   }
 
   .hero-copy__more {
