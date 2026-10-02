@@ -653,13 +653,14 @@ p {
 
   .service-layout {
     grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.1fr);
-    align-items: start;
+    align-items: stretch;
     gap: 1.35rem;
   }
 
   .service-intro {
-    position: sticky;
-    top: calc(var(--header-height) + 1.3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 1.9rem 1.8rem;
     border: 1px solid rgba(15, 22, 33, 0.1);
     border-radius: var(--radius-lg);
