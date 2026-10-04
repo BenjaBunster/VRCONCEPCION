@@ -1534,7 +1534,7 @@ p {
   .hero {
     background:
       linear-gradient(90deg, rgba(4, 7, 11, 0.92) 0%, rgba(4, 7, 11, 0.84) 28%, rgba(4, 7, 11, 0.34) 62%, rgba(4, 7, 11, 0.12) 100%),
-      url("../img/hero.png") 85% center / cover no-repeat;
+      url("../img/hero.png") 84% center / cover no-repeat;
   }
 
   .hero-grid {
@@ -1548,7 +1548,7 @@ p {
     max-width: 42rem;
     margin-inline: auto;
     text-align: center;
-    padding-top: calc(clamp(10rem, 28vw, 10.5rem) + 16rem);
+    padding-top: calc(clamp(8rem, 28vw, 10.5rem) + 14rem);
   }
 
   .hero-copy__lead,
