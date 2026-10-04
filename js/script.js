@@ -400,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
       video.playsInline = true;
       video.preload = 'metadata';
       video.setAttribute('aria-label', label);
+      video.poster = card.dataset.videoPoster;
       video.src = source;
 
       card.replaceChildren(video);

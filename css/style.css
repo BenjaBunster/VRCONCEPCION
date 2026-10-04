@@ -1548,7 +1548,7 @@ p {
     max-width: 42rem;
     margin-inline: auto;
     text-align: center;
-    padding-top: calc(clamp(8rem, 28vw, 10.5rem) + 14.5rem);
+    padding-top: calc(clamp(7rem, 28vw, 10.5rem) + 13rem);
   }
 
   .hero-copy__lead,
