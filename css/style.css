@@ -1648,6 +1648,30 @@ p {
     font-size: 0.75rem;
   }
 
+  .service-card__trigger {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 0.65rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .service-card__title,
+  .service-card__hint {
+    justify-self: center;
+  }
+
+  .service-card__mobile-break {
+    display: block;
+  }
+
+  .service-card__trigger[data-service-open="corporativos"] .service-card__title {
+    font-size: clamp(0.68rem, 3.1vw, 0.82rem);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+
   .gallery-track {
     padding: 0.85rem;
   }
@@ -1788,34 +1812,8 @@ p {
     width: 100%;
   }
 
-  .service-card__trigger {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    gap: 0.65rem;
-    padding: 1rem;
-    text-align: center;
-  }
-
   .service-card__title {
     font-size: 0.94rem;
-  }
-
-  .service-card__hint {
-    justify-self: center;
-  }
-
-  .service-card__mobile-break {
-    display: block;
-  }
-
-  .service-card__trigger[data-service-open="corporativos"] {
-    gap: 0.65rem;
-  }
-
-  .service-card__trigger[data-service-open="corporativos"] .service-card__title {
-    font-size: clamp(0.68rem, 3.1vw, 0.82rem);
-    letter-spacing: 0.03em;
-    line-height: 1.2;
   }
 
   .gallery-track {
