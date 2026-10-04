@@ -652,6 +652,11 @@ p {
     max-width: 100%;
   }
 
+  .hero-copy__extra {
+    text-align: justify;
+    text-align-last: left;
+  }
+
   .service-layout {
     grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.1fr);
     align-items: stretch;
@@ -1485,6 +1490,15 @@ p {
 
   .container {
     width: min(calc(100% - 1.2rem), var(--container));
+  }
+
+  .service-intro,
+  .service-intro p {
+    text-align: center;
+  }
+
+  .service-intro p {
+    margin-inline: auto;
   }
 
   .header-inner {
