@@ -1496,9 +1496,17 @@ p {
     width: min(calc(100% - 1.2rem), var(--container));
   }
 
-  .service-intro,
-  .service-intro p {
+  .service-intro {
     text-align: center;
+  }
+
+  p {
+    text-align: justify;
+    text-align-last: center;
+  }
+
+  .section-heading--center p {
+    text-align: justify;
   }
 
   .service-intro p {
@@ -1664,12 +1672,6 @@ p {
 
   .service-card__mobile-break {
     display: block;
-  }
-
-  .service-card__trigger[data-service-open="corporativos"] .service-card__title {
-    font-size: clamp(0.68rem, 3.1vw, 0.82rem);
-    letter-spacing: 0.03em;
-    line-height: 1.2;
   }
 
   .gallery-track {
